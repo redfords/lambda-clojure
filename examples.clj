@@ -23,3 +23,16 @@
     result)
     )
 (digs (list) 123)
+
+;; split a list with a formatted string
+(defn impr [result x]
+(if (empty? x)
+result
+(recur (conj result (format "Uno para %s, uno para mí" (first x))) (rest x))
+))
+
+(defn repartir [x]
+(if (empty? x)
+(println "Uno para vos, uno para mí")
+(impr (list) x))
+)

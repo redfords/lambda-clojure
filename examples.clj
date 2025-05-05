@@ -26,13 +26,22 @@
 
 ;; split a list with a formatted string
 (defn impr [result x]
-(if (empty? x)
-result
-(recur (conj result (format "Uno para %s, uno para mí" (first x))) (rest x))
+  (if (empty? x)
+  result
+  (recur (conj result (format "Uno para %s, uno para mí" (first x))) (rest x))
 ))
-
 (defn repartir [x]
-(if (empty? x)
-(println "Uno para vos, uno para mí")
-(impr (list) x))
+  (if (empty? x)
+  (println "Uno para vos, uno para mí")
+  (impr (list) x))
 )
+
+;; return a list of values with pair index
+(defn pares [i]
+  (loop [x 0 result []]
+  (if (< x (count i))
+  (recur (+ x 2) (conj result (nth i x))) result))
+)
+(defn unir [x y]
+  (concat (pares x) (pares y)
+))

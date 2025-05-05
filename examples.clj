@@ -5,5 +5,5 @@
 (tercer-angulo 100 20)
 
 ;; return a day in seconds
-(defn segundos [d h m s] (+ (* (* (* d 24) 60) 60) (* (* h 60) 60) (* m 60) s))
+(defn segundos [d h m s] (+ (* d 24 60 60) (* h 60 60) (* m 60) s))
 (segundos 1 1 1 1)

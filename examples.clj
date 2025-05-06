@@ -1,7 +1,12 @@
 (pr "Hola mundo")
 
 ;; return the third angle of a triangle
-(defn tercer-angulo [x y] (- 180 (+ x y)))
+(defn tercer-angulo
+  ([a b] (- 180 a b))
+([] (println "No se permite sin args"))
+([a] (println "Un solo arg"))
+([a b &c] (println "Demasiados args"))
+)
 (tercer-angulo 100 20)
 
 ;; convert a day to seconds

@@ -62,9 +62,16 @@
       (conj (rgba (quot x 1000)) (rem x 1000))))
 (rgba 4294967296)
 
+;; count the number of digits
+(defn cant-dig [n]
+  (if (< n 10)
+    1
+    (+ 1 (cant-dig (quot n 10)))
+))
+
 ;; check if a numbre is power of another
 (defn pot? [x y]
-(if (and (> (/ y x) 1) (not= x 1))
-(pot? x (/ y x))
-(= (/ y x) 1)
+  (if (and (> (/ y x) 1) (not= x 1))
+  (pot? x (/ y x))
+  (= (/ y x) 1)
 ))

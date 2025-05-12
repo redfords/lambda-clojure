@@ -51,6 +51,13 @@
   (concat (pares x) (pares y)
 ))
 
-# check if a number is palindrome
+;; check if a number is palindrome
 (defn capicua [x]
   (= (seq (str x)) (reverse (str x))))
+
+;; convert 32 bit number to rgba
+(defn rgba [x]
+  (if (< x 1000)
+      [x]
+      (conj (rgba (quot x 1000)) (rem x 1000))))
+(rgba 4294967296)

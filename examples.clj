@@ -61,6 +61,14 @@
       (conj (rgba (quot x 1000)) (rem x 1000))))
 (rgba 4294967296)
 
+;; reverse a number
+(defn inv-num [r n]
+(if (>= n 10)
+    (+ (inv-num (+ (* r 10) (rem n 10)) (quot n 10)))
+    (+ (* r 10) (rem n 10))
+))
+(defn invertir [n] (inv-num 0 n))
+
 ;; return the nth of fibonacci sequence
 (defn fibo [x y iter num]
 (if (= iter num)
@@ -76,7 +84,7 @@ x
     (+ 1 (cant-dig (quot n 10)))
 ))
 
-;; check if a numbre is power of another
+;; check if a number is power of another
 (defn pot? [x y]
   (if (and (> (/ y x) 1) (not= x 1))
   (pot? x (/ y x))

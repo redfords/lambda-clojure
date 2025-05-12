@@ -61,3 +61,10 @@
       [x]
       (conj (rgba (quot x 1000)) (rem x 1000))))
 (rgba 4294967296)
+
+;; check if a numbre is power of another
+(defn pot? [x y]
+(if (and (> (/ y x) 1) (not= x 1))
+(pot? x (/ y x))
+(= (/ y x) 1)
+))

@@ -43,7 +43,9 @@
 (defn pares [i]
   (loop [x 0 result []]
   (if (< x (count i))
-  (recur (+ x 2) (conj result (nth i x))) result))
+  (recur (+ x 2) (conj result (nth i x)))
+  result)
+  )
 )
 (defn unir [x y]
   (concat (pares x) (pares y)

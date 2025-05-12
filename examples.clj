@@ -21,12 +21,11 @@
   ))
 
 ;; convert a number to a list of integers
-(defn digs [result n]
+(defn digitos [result n]
   (if (> n 0)
-    (digs (conj result (mod n 10)) (quot n 10))
-    result)
-    )
-(digs (list) 123)
+    (digitos (conj result (mod n 10)) (quot n 10))
+    result))
+(defn digs [n] (digitos (list) n))
 
 ;; split a list with a formatted string
 (defn impr [result x]

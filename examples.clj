@@ -61,6 +61,14 @@
       (conj (rgba (quot x 1000)) (rem x 1000))))
 (rgba 4294967296)
 
+;; return the nth of fibonacci sequence
+(defn fibo [x y iter num]
+(if (= iter num)
+x
+(fibo (+ x y) x (inc iter) num)
+))
+(defn nth-fibo [num] (fibo 1 0 1 num))
+
 ;; count the number of digits
 (defn cant-dig [n]
   (if (< n 10)

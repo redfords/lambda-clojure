@@ -50,3 +50,7 @@
 (defn unir [x y]
   (concat (pares x) (pares y)
 ))
+
+# check if a number is palindrome
+(defn capicua [x]
+  (= (seq (str x)) (reverse (str x))))

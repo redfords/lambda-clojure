@@ -21,10 +21,9 @@
   ))
 
 ;; convert a number to a list of integers
-(require '[clojure.math :as math])
 (defn digs [result n]
   (if (> n 0)
-    (recur (conj result (mod n 10)) (math/floor-div n 10))
+    (digs (conj result (mod n 10)) (quot n 10))
     result)
     )
 (digs (list) 123)

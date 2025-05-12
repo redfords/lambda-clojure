@@ -32,7 +32,7 @@
 (defn impr [result x]
   (if (empty? x)
   result
-  (recur (conj result (format "Uno para %s, uno para mí" (first x))) (rest x))
+  (impr (conj result (format "Uno para %s, uno para mí" (first x))) (rest x))
 ))
 (defn repartir [x]
   (if (empty? x)

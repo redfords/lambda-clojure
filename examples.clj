@@ -70,6 +70,14 @@
 ))
 (defn invertir [n] (inv-num 0 n))
 
+;; return the nth approximation to pi
+(defn pi [i c n]
+(if (< i (* n 2))
+(+ (pi (+ i 2) (- c) n) (/ (- c) i))
+0
+))
+(defn aprox-pi [n] (* 4 (pi 1 -1 n)))
+
 ;; return the nth of fibonacci sequence
 (defn fibo [x y iter num]
 (if (= iter num)

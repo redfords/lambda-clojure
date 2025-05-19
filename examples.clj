@@ -99,3 +99,8 @@ x
   (pot? x (/ y x))
   (= (/ y x) 1)
 ))
+
+;; replace string adn to arn
+(defn adn2arn [x]
+(clojure.string/join (replace '{"g" "c", "c" "g", "t" "a", "a" "u"}
+(clojure.string/split x #""))))

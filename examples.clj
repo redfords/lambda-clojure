@@ -104,3 +104,15 @@ x
 (defn adn2arn [x]
 (clojure.string/join (replace '{"g" "c", "c" "g", "t" "a", "a" "u"}
 (clojure.string/split x #""))))
+
+;; remove element from nested list
+(defn lista [x]
+(if (not (empty? x))
+    (if (list? (first x))
+        (conj (lista (first x)) (lista (rest x)))
+        (conj (lista (rest x)) (first x))
+    )
+(list)
+))
+(lista '(1 2 (3 4) 5 6))
+

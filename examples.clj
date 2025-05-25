@@ -116,3 +116,7 @@ x
 ))
 (lista '(1 2 (3 4) 5 6))
 
+;; get the element in the middle
+(defn medio [x]
+(nth x (/ (count x) 2))
+)

@@ -137,3 +137,18 @@ x
     (conj (sin-repetidos (rest x)) (first x))
     )
 ))
+
+;; check if a string is in ISBN-10 format
+(defn formato [x]
+(replace '{"-" "", " " "", "X" ""} (clojure.string/split x #"")))
+
+(defn suma [x y i]
+(if (= y 9)
+10
+(+ (suma x (inc y) (dec i)) (* (Integer/parseInt (nth x y)) i))
+))
+
+(defn isbn-10? [x]
+(and (= (mod (suma (formato x) 0 10) 11) 0) (= (nth x 9) '\X)))
+
+(isbn-10? "359821507X")

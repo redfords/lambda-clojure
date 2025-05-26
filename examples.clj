@@ -152,3 +152,20 @@ x
 (and (= (mod (suma (formato x) 0 10) 11) 0) (= (nth x 9) '\X)))
 
 (isbn-10? "359821507X")
+
+;; count each adn char in a string
+(defn contar [x y]
+(if (= (count x) 0)
+0
+    (if (= (first x) y)
+    (+ (contar (rest x) y) 1)
+    (contar (rest x) y)
+    )
+))
+
+(defn contar-adn [x]
+(printf "g: %s%n" (contar x '\g))
+(printf "c: %s%n" (contar x '\c))
+(printf "t: %s%n" (contar x '\t))
+(printf "a: %s%n" (contar x '\a))
+)

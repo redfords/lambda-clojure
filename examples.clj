@@ -142,17 +142,12 @@ x
 (ordenar '((1 2 3) (1 2) (1 2 3 4) (1)))
 
 ;; remove duplicates from a list
-(defn existe [x y i]
-(if (= (nth x i) y)
-    1
-    (if (< i (- (count x) 1))
-        (existe x y (inc i))
-)))
+(defn existe [x y] (> (count (filter #(= % y) x)) 0))
 
 (defn sin-repetidos [x]
 (if (= (count x) 1)
 x
-    (if (= (existe (rest x) (first x) 0) 1)
+    (if (existe (rest x) (first x))
     (conj (sin-repetidos (rest x)))
     (conj (sin-repetidos (rest x)) (first x))
     )

@@ -136,6 +136,11 @@ x
 ;; get the last item in a nested list
 (defn getLast[lista] (->> lista flatten (filter symbol?) last))
 
+;; order a list os lists by length
+(defn ordenar [lista] (sort-by count lista))
+(reverse (ordenar lista))
+(ordenar '((1 2 3) (1 2) (1 2 3 4) (1)))
+
 ;; remove duplicates from a list
 (defn existe [x y i]
 (if (= (nth x i) y)

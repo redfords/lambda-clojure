@@ -44,6 +44,9 @@
   (concat (pares x) (pares y)
 ))
 
+(defn pares [x y]
+(map (fn [x] (keep-indexed #(when (even? %1) %2) x)) (conj (list x) y)))
+
 ;; check if a number is palindrome
 (defn capicua [x]
   (= (seq (str x)) (reverse (str x))))

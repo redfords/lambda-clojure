@@ -189,3 +189,15 @@ x
 (printf "t: %s%n" (contar x '\t))
 (printf "a: %s%n" (contar x '\a))
 )
+
+;; get maximum depth of a list
+(defn profundidad (lista)
+(if (list? lista)
+(if (> (+ 1 (profundidad (first lista))) (profundidad (next lista)))
+    (+ 1 (profundidad (first lista)))
+    (profundidad (next lista)))
+    0)
+)
+
+(defn profundidad ([lista] (last (sort (map #(if (list? %) (inc (profundidad %)) 1) lista)))))
+(profundidad '((2 3)(3 ((7))) 5))

@@ -66,6 +66,8 @@
 ))
 (defn invertir [n] (inv-num 0 n))
 
+(defn invertir[x] (->> x str reverse clojure.string/join Integer/parseInt))
+
 ;; return the nth approximation to pi
 (defn pi [i c n]
 (if (< i (* n 2))

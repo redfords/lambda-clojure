@@ -225,3 +225,9 @@ x
 ;; check if a number is narcissistic
 (defn narcissistic? [x]
 (= (int (reduce + (map #(Math/pow % (count (str x))) (digs x)))) x))
+
+;; get a sublist from a list
+(defn sublist [lista x y]
+(let [i (- x 1)]
+(keep-indexed #(when (and (>= %1 i) (< %1 (+ i y) )) %2) lista)))
+(sublist '(A B C D E F G) 3 2)

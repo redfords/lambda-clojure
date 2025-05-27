@@ -196,8 +196,14 @@ x
     0)
 )
 
-(defn profundidad ([lista] (last (sort (map #(if (list? %) (inc (profundidad %)) 1) lista)))))
+(defn profundidad ([lista]
+  (last (sort (map #(if (list? %) (inc (profundidad %)) 1) lista)))))
 (profundidad '((2 3)(3 ((7))) 5))
 
 ;; count the number of appearances of a word in a sentence
-(defn contar-palabras [x] (frequencies (clojure.string/split (str x) #" ")))
+(defn contar-palabras [x]
+  (frequencies (clojure.string/split (str x) #" ")))
+
+;; check if a word has duplicate letters
+(defn letra-repetida [x]
+  (> (count (filter #(-> % val (> 1)) (frequencies x))) 0))

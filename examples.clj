@@ -27,6 +27,9 @@
     ))
 (defn digs [n] (reverse (digitos n)))
 
+(defn digs [x]
+(map Integer/parseInt (seq (clojure.string/split (str x) #""))))
+
 ;; split a list with a formatted string
 (defn repartir
   ([] (repartir "vos"))

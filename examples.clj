@@ -231,3 +231,7 @@ x
 (let [i (- x 1)]
 (keep-indexed #(when (and (>= %1 i) (< %1 (+ i y) )) %2) lista)))
 (sublist '(A B C D E F G) 3 2)
+
+;; create a function distribution
+(defn distl [x lista] (map #(conj (list %) x) lista))
+(distl 'a '(b c d))

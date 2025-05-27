@@ -207,3 +207,12 @@ x
 ;; check if a word has duplicate letters
 (defn letra-repetida [x]
   (> (count (filter #(-> % val (> 1)) (frequencies x))) 0))
+
+;; slice a string
+(defn rango [palabra i]
+    (let [len (+ (count palabra) 1)]
+    (zipmap (range 0 (- len i)) (range i len))))
+
+(defn slice [palabra i]
+    (map #(subs palabra (first %) (val %)) (rango palabra i)))
+(slice "abcdef" 3)

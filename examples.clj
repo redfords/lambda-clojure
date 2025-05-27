@@ -119,10 +119,17 @@ x
 ))
 (lista '(1 2 (3 4) 5 6))
 
+(defn eliminar [lista n]
+  (filter #(not= % n)
+  (map #(if (list? %) (eliminar % n) %) lista)))
+
 ;; get the element in the middle
 (defn medio [x]
 (nth x (/ (count x) 2))
 )
+
+;; get the last item in a nested list
+(defn getLast[lista] (->> lista flatten (filter symbol?) last))
 
 ;; remove duplicates from a list
 (defn existe [x y i]

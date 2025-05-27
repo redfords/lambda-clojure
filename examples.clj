@@ -15,9 +15,9 @@
 
 ;; return the first multiple of 10
 (defn sig-mul-10 [i]
-  (if (= (mod i 10) 0)
-  i
-  (recur (inc i))
+  (if (= (mod (+ i 1) 10) 0)
+  (+ i 1)
+  (sig-mul-10 (inc i))
   ))
 
 ;; convert a number to a list of integers

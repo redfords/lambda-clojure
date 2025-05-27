@@ -221,3 +221,7 @@ x
 (defn acronimo [x]
 (clojure.string/join (map first (clojure.string/split (str x) #" "))))
 (acronimo "objeto volador no identificado")
+
+;; check if a number is narcissistic
+(defn narcissistic? [x]
+(= (int (reduce + (map #(Math/pow % (count (str x))) (digs x)))) x))

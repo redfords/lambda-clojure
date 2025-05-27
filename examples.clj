@@ -94,6 +94,8 @@ x
     (+ 1 (cant-dig (quot n 10)))
 ))
 
+(defn cant-dig [x] (count (str x)))
+
 ;; check if a number is power of another
 (defn pot? [x y]
   (if (and (> (/ y x) 1) (not= x 1))

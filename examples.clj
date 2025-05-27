@@ -216,3 +216,8 @@ x
 (defn slice [palabra i]
     (map #(subs palabra (first %) (val %)) (rango palabra i)))
 (slice "abcdef" 3)
+
+;; return the acronym of a word
+(defn acronimo [x]
+(clojure.string/join (map first (clojure.string/split (str x) #" "))))
+(acronimo "objeto volador no identificado")

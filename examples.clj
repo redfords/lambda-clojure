@@ -124,9 +124,14 @@ x
   (map #(if (list? %) (eliminar % n) %) lista)))
 
 ;; get the element in the middle
-(defn medio [x]
-(nth x (/ (count x) 2))
-)
+(defn medio [x] (nth x (/ (count x) 2)))
+
+(defn central [li]
+(let [len (count li), num (first li)]
+(cond
+    (or (= len 1) (< len 3)) num
+    true (central (butlast (rest li)))
+)))
 
 ;; get the last item in a nested list
 (defn getLast[lista] (->> lista flatten (filter symbol?) last))

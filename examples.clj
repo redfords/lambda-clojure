@@ -183,6 +183,8 @@ x
     )
 ))
 
+(defn contar [x y] (count (filter #(= % y) (seq x))))
+
 (defn contar-adn [x]
 (printf "g: %s%n" (contar x '\g))
 (printf "c: %s%n" (contar x '\c))

@@ -28,16 +28,9 @@
 (defn digs [n] (reverse (digitos n)))
 
 ;; split a list with a formatted string
-(defn impr [result x]
-  (if (empty? x)
-  result
-  (impr (conj result (format "Uno para %s, uno para mí" (first x))) (rest x))
-))
-(defn repartir [x]
-  (if (empty? x)
-  (println "Uno para vos, uno para mí")
-  (impr (list) x))
-)
+(defn repartir
+  ([] (repartir "vos"))
+  ([& more] (map #(str "Uno para " % ", uno para mi") more)))
 
 ;; return a list of values with pair index
 (defn pares [i]

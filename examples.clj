@@ -198,3 +198,6 @@ x
 
 (defn profundidad ([lista] (last (sort (map #(if (list? %) (inc (profundidad %)) 1) lista)))))
 (profundidad '((2 3)(3 ((7))) 5))
+
+;; count the number of appearances of a word in a sentence
+(defn contar-palabras [x] (frequencies (clojure.string/split (str x) #" ")))

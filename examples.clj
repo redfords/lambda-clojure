@@ -239,3 +239,7 @@ x
 ;; combine two lists into one
 (defn intercalar [x y]
 (flatten (map #(conj (list (val %)) (first %)) (zipmap x y))))
+
+;; create a vector of n vectors
+(defn vectores [n]
+(into [] (map #(into [] (range 1 %)) (range 2 (+ n 2)))))

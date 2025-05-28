@@ -235,3 +235,7 @@ x
 ;; create a function distribution
 (defn distl [x lista] (map #(conj (list %) x) lista))
 (distl 'a '(b c d))
+
+;; combine two lists into one
+(defn intercalar [x y]
+(flatten (map #(conj (list (val %)) (first %)) (zipmap x y))))

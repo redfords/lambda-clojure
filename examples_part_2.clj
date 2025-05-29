@@ -293,3 +293,10 @@ x
 
 ;; return only the anagrams of a word in a list
 (defn anagramas [p a] (filter #(= (sort p) (sort %)) a))
+
+;; check if a sentence is a panagram
+(defn pangrama? [x]
+(= (conj (into [] (range 97 123)) 241)
+(->> x sin-repetidos (map clojure.string/lower-case) clojure.string/join
+  seq (map int) sort (filter #(or (and (>= % 97) (<= % 122)) (= % 241))))
+))

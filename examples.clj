@@ -252,7 +252,7 @@ x
     true "escaleno"
 ))
 
-;; check if a number is prime
+;; return the nth prime number
 (defn primo [n div]
 (cond
     (< n 2) "false"
@@ -261,3 +261,13 @@ x
     true (primo n (inc div))
 ))
 (defn es-primo [n] (primo n 2))
+
+(defn obtener-primos [n x y]
+(let [p (es-primo x)]
+(cond
+    (and (= p "true") (= n y)) x
+    (= p "true") (obtener-primos n (inc x) (inc y))
+    true (obtener-primos n (inc x) y)
+)))
+
+(defn n-primo [n] (obtener-primos n 2 1))

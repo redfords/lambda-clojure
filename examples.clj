@@ -251,3 +251,13 @@ x
     (or (= a b) (= b c) (= a c)) "isosceles"
     true "escaleno"
 ))
+
+;; check if a number is prime
+(defn primo [n div]
+(cond
+    (< n 2) "false"
+    (> (* div div) n) "true"
+    (= (mod n div) 0) "false"
+    true (primo n (inc div))
+))
+(defn es-primo [n] (primo n 2))

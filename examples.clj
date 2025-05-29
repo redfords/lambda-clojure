@@ -243,3 +243,11 @@ x
 ;; create a vector of n vectors
 (defn vectores [n]
 (into [] (map #(into [] (range 1 %)) (range 2 (+ n 2)))))
+
+;; return the triangle type based on the lengths of their sides
+(defn tipo-triangulo [a b c]
+(cond
+    (and (= a b) (= b c)) "equilatero"
+    (or (= a b) (= b c) (= a c)) "isosceles"
+    true "escaleno"
+))

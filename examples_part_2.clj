@@ -300,3 +300,9 @@ x
 (->> x sin-repetidos (map clojure.string/lower-case) clojure.string/join
   seq (map int) sort (filter #(or (and (>= % 97) (<= % 122)) (= % 241))))
 ))
+
+;; return the index of a sublist
+(defn pos-inicial [x y]
+(let [i (clojure.string/index-of (clojure.string/join x) y)]
+(if i i 0)
+))

@@ -271,3 +271,6 @@ x
 )))
 
 (defn n-primo [n] (obtener-primos n 2 1))
+
+;; return only the anagrams of a word in a list
+(defn anagramas [p a] (filter #(= (sort p) (sort %)) a))

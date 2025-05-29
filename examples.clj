@@ -272,5 +272,18 @@ x
 
 (defn n-primo [n] (obtener-primos n 2 1))
 
+;; return a vector with the first 100 prime numbers
+(defn obtener-primeros-primos [x y]
+(let [p (es-primo x)]
+(if (and (= p "true") (= y 100))
+    [x]
+    (if (= p "true")
+        (conj (obtener-100-primos (inc x) (inc y)) x)
+        (obtener-100-primos (inc x) y)
+    )
+)))
+
+(defn cienPrimos [] (obtener-primeros-primos 2 1))
+
 ;; return only the anagrams of a word in a list
 (defn anagramas [p a] (filter #(= (sort p) (sort %)) a))

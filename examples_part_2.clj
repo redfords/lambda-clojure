@@ -73,7 +73,7 @@ x
     )
 ))
 
-;; 9. Oorder a list os lists by length
+;; 9. Order a list os lists by length
 (defn ordenar [lista] (sort-by count lista))
 (reverse (ordenar lista))
 (ordenar '((1 2 3) (1 2) (1 2 3 4) (1)))
@@ -92,6 +92,16 @@ x
 (and (= (mod (suma (formato x) 0 10) 11) 0) (= (nth x 9) '\X)))
 
 (isbn-10? "359821507X")
+
+;; 11. Return the upper triangle matrix
+(defn mtSup [x] (reverse (calc (reverse x) (count x))))
+
+(defn calc [x i]
+  (if (= (count x) 1)
+    (list (first x))
+    (conj (calc (rest x) (dec i)) (concat (repeat (- i 1) 0) 
+        (keep-indexed #(when (>= (+ %1 1) i) %2) (first x))
+))))
 
 ;; 14. Count each adn char in a string
 (defn contar [x y]

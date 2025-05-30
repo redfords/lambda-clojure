@@ -176,6 +176,21 @@ x
 (defn narcissistic? [x]
 (= (int (reduce + (map #(Math/pow % (count (str x))) (digs x)))) x))
 
+;; 25. Get the number of list with more Vs than Fs
+(defn filas-max-V [x]
+(let [mapa (map #(frequencies %) x)]
+(let [resul (map #(- (get % 'V) (get % 'F)) mapa)]
+(let [indice (map vector (range 1 (+ (count x) 1)) resul)]
+(let [resto (filter #(> (second %) 0) indice)]
+(map #(first %) resto)
+)))))
+
+(defn mas-V-o-F [x]
+(let [mapa (map #(frequencies %) x)]
+(let [max (map #(sort-by second > %) mapa)]
+(sort-by second > (frequencies (map #(ffirst %) max)))
+)))
+
 ;; 26. Get a sublist from a list
 (defn sublist [lista x y]
 (let [i (- x 1)]

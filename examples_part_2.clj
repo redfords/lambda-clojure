@@ -244,7 +244,10 @@ x
 
 ;; 38. Check if a sentence is a palindrome
 (defn palindromo? [x]
-(let [y (filter #(or (and (>= % 97) (<= % 122)) (= % 241)) (map int (seq
-  (clojure.string/join (replace '{"á" "a", "é" "e", "í" "i", "ó" "ó", "ú" "u"} 
-  (map clojure.string/lower-case x))))))]
-(= y (reverse y))))
+(let [y (filter #(or (and (>= % 97) (<= % 122)) (and (>= % 48) (<= % 57)) (= % 241))
+  (map int (seq (clojure.string/join
+  (replace '{"á" "a", "é" "e", "í" "i", "ó" "ó", "ú" "u"} 
+  (map clojure.string/lower-case x))))))
+]
+(= y (reverse y))
+))

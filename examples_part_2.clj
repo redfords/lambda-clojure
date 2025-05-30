@@ -242,6 +242,21 @@ x
 (defn losers []
 (losers-only (map vector '(5 2 5 4 2 5) '(2 1 3 1 2 2))))
 
+;; 37. Return a list with the winners, losers and ties
+(defn results []
+(let [x (map vector '(1 2 1 4 3 5) '(2 1 3 1 2 2))]
+(equipos x)))
+
+(defn equipos [x]
+(let [gano (frequencies (map first x)), perdio (frequencies (map second x))]
+(let [eq (set (concat (keys gano) (keys perdio)))]
+(let [res (map vector eq (map #(- (or (get gano %) 0) (or (get perdio %) 0)) eq))]
+(conj
+  (list (map #(first %) (filter #(= (second %) 0) res)))
+  (map #(first %) (filter #(< (second %) 0) res))
+  (map #(first %) (filter #(> (second %) 0) res))
+)))))
+
 ;; 38. Check if a sentence is a palindrome
 (defn palindromo? [x]
 (let [y (filter #(or (and (>= % 97) (<= % 122)) (and (>= % 48) (<= % 57)) (= % 241))
@@ -251,3 +266,4 @@ x
 ]
 (= y (reverse y))
 ))
+

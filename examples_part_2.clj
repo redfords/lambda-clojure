@@ -306,3 +306,11 @@ x
 (let [i (clojure.string/index-of (clojure.string/join x) y)]
 (if i i 0)
 ))
+
+;; return the undefeated teams in a tournament
+(defn obtener-invictos [x]
+(filter #(not (some (fn [u] (= u %)) (vals (into (sorted-map) x)))) 
+    (keys (into (sorted-map) x))))
+
+(defn invictos []
+(obtener-invictos (map vector '(1 2 1 4 3 5) '(2 1 3 1 2 2))))

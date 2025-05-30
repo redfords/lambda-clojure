@@ -207,6 +207,22 @@ x
 (defn distl [x lista] (map #(conj (list %) x) lista))
 (distl 'a '(b c d))
 
+;; 29. Return a matrix with the even colunmns and the odd rows
+(defn filas [x] (keep-indexed #(when (odd? %1) %2) x))
+
+(defn col-par-fil-imp [x]
+(let [col (keep-indexed #(when (even? %1) %2) x)]
+(map #(filas %) col)))
+
+;; 30. Return the difference between the sum of the odd rows and the sum of the even rows
+
+(defn dif-sumas[x]
+(let [isOdd (keep-indexed #(when (even? %1) %2) x)]
+(let [isEven (keep-indexed #(when (odd? %1) %2) x)]
+(- (reduce + (map #(reduce + %) isOdd))
+    (reduce + (map #(reduce + %) isEven)))
+)))
+
 ;; 31. Combine two lists into one
 (defn intercalar [x y]
 (flatten (map #(conj (list (val %)) (first %)) (zipmap x y))))

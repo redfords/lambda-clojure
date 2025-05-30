@@ -1,77 +1,4 @@
-;; 1. Return the third angle of a triangle
-(defn tercer-angulo
-  ([a b] (- 180 a b))
-([] (println "No se permite sin args"))
-([a] (println "Un solo arg"))
-([a b &c] (println "Demasiados args"))
-)
-(tercer-angulo 100 20)
-
-;; 2. Convert a day to seconds
-(defn segundos [d h m s] (+ (* d 24 60 60) (* h 60 60) (* m 60) s))
-(segundos 1 1 1 1)
-
-;; 3. Return the first multiple of 10
-(defn sig-mul-10 [i]
-  (if (= (mod (+ i 1) 10) 0)
-  (+ i 1)
-  (sig-mul-10 (inc i))
-  ))
-
-;; 4. Convert 32 bit number to rgba
-(defn rgba [x]
-  (if (< x 1000)
-      [x]
-      (conj (rgba (quot x 1000)) (rem x 1000))))
-(rgba 4294967296)
-
-;; 5. Check if a number is palindrome
-(defn capicua [x]
-  (= (seq (str x)) (reverse (str x))))
-
-;; 6. Return the nth approximation to pi
-(defn pi [i c n]
-  (if (< i (* n 2))
-    (+ (pi (+ i 2) (- c) n) (/ (- c) i))
-    0
-  ))
-(defn aprox-pi [n] (* 4 (pi 1 -1 n)))
-
-;; 7. Reverse a number
-(defn inv-num [r n]
-(if (>= n 10)
-    (+ (inv-num (+ (* r 10) (rem n 10)) (quot n 10)))
-    (+ (* r 10) (rem n 10))
-))
-(defn invertir [n] (inv-num 0 n))
-
-(defn invertir[x] (->> x str reverse clojure.string/join Integer/parseInt))
-
-;; 8. Return the nth of fibonacci sequence
-(defn fibo [x y iter num]
-  (if (= iter num)
-    x
-    (fibo (+ x y) x (inc iter) num)
-  ))
-(defn nth-fibo [num] (fibo 1 0 1 num))
-
-;; 9. Count the number of digits
-(defn cant-dig [n]
-  (if (< n 10)
-    1
-    (+ 1 (cant-dig (quot n 10)))
-))
-
-(defn cant-dig [x] (count (str x)))
-
-;; 10. Check if a number is power of another
-(defn pot? [x y]
-  (if (and (> (/ y x) 1) (not= x 1))
-  (pot? x (/ y x))
-  (= (/ y x) 1)
-))
-
-;; convert a number to a list of integers
+;; 1. Convert a number to a list of integers
 (defn digitos [n]
   (if (> n 0)
     (conj (digitos (quot n 10)) (mod n 10))
@@ -81,12 +8,12 @@
 (defn digs [x]
 (map Integer/parseInt (seq (clojure.string/split (str x) #""))))
 
-;; split a list with a formatted string
+;; 2. Split a list with a formatted string
 (defn repartir
   ([] (repartir "vos"))
   ([& more] (map #(str "Uno para " % ", uno para mi") more)))
 
-;; return a list of values with pair index
+;; 3. Return a list of values with pair index
 (defn pares [i]
   (loop [x 0 result []]
   (if (< x (count i))
@@ -101,20 +28,12 @@
 (defn pares [x y]
 (map (fn [x] (keep-indexed #(when (even? %1) %2) x)) (conj (list x) y)))
 
-
-
-
-
-
-
-
-
-;; replace string adn to arn
+;; 4. Replace string adn to arn
 (defn adn2arn [x]
 (clojure.string/join (replace '{"g" "c", "c" "g", "t" "a", "a" "u"}
 (clojure.string/split x #""))))
 
-;; remove element from nested list
+;; 5. Remove element from nested list
 (defn lista [x]
 (if (not (empty? x))
     (if (list? (first x))
@@ -129,7 +48,10 @@
   (filter #(not= % n)
   (map #(if (list? %) (eliminar % n) %) lista)))
 
-;; get the element in the middle
+;; 6. Get the last item in a nested list
+(defn getLast[lista] (->> lista flatten (filter symbol?) last))
+
+;; 7. Get the element in the middle
 (defn medio [x] (nth x (/ (count x) 2)))
 
 (defn central [li]
@@ -139,15 +61,7 @@
     true (central (butlast (rest li)))
 )))
 
-;; get the last item in a nested list
-(defn getLast[lista] (->> lista flatten (filter symbol?) last))
-
-;; order a list os lists by length
-(defn ordenar [lista] (sort-by count lista))
-(reverse (ordenar lista))
-(ordenar '((1 2 3) (1 2) (1 2 3 4) (1)))
-
-;; remove duplicates from a list
+;; 8. Remove duplicates from a list
 (defn existe [x y] (> (count (filter #(= % y) x)) 0))
 
 (defn sin-repetidos [x]
@@ -159,14 +73,19 @@ x
     )
 ))
 
-;; check if a string is in ISBN-10 format
+;; 9. Oorder a list os lists by length
+(defn ordenar [lista] (sort-by count lista))
+(reverse (ordenar lista))
+(ordenar '((1 2 3) (1 2) (1 2 3 4) (1)))
+
+;; 10. Check if a string is in ISBN-10 format
 (defn formato [x]
 (replace '{"-" "", " " "", "X" ""} (clojure.string/split x #"")))
 
 (defn suma [x y i]
-(if (= y 9)
-10
-(+ (suma x (inc y) (dec i)) (* (Integer/parseInt (nth x y)) i))
+  (if (= y 9)
+  10
+  (+ (suma x (inc y) (dec i)) (* (Integer/parseInt (nth x y)) i))
 ))
 
 (defn isbn-10? [x]
@@ -174,7 +93,7 @@ x
 
 (isbn-10? "359821507X")
 
-;; count each adn char in a string
+;; 14. Count each adn char in a string
 (defn contar [x y]
 (if (= (count x) 0)
 0
@@ -193,72 +112,11 @@ x
 (printf "a: %s%n" (contar x '\a))
 )
 
-;; get maximum depth of a list
-(defn profundidad (lista)
-(if (list? lista)
-(if (> (+ 1 (profundidad (first lista))) (profundidad (next lista)))
-    (+ 1 (profundidad (first lista)))
-    (profundidad (next lista)))
-    0)
-)
-
-(defn profundidad ([lista]
-  (last (sort (map #(if (list? %) (inc (profundidad %)) 1) lista)))))
-(profundidad '((2 3)(3 ((7))) 5))
-
-;; count the number of appearances of a word in a sentence
+;; 15. Count the number of appearances of a word in a sentence
 (defn contar-palabras [x]
   (frequencies (clojure.string/split (str x) #" ")))
 
-;; check if a word has duplicate letters
-(defn letra-repetida [x]
-  (> (count (filter #(-> % val (> 1)) (frequencies x))) 0))
-
-;; slice a string
-(defn rango [palabra i]
-    (let [len (+ (count palabra) 1)]
-    (zipmap (range 0 (- len i)) (range i len))))
-
-(defn slice [palabra i]
-    (map #(subs palabra (first %) (val %)) (rango palabra i)))
-(slice "abcdef" 3)
-
-;; return the acronym of a word
-(defn acronimo [x]
-(clojure.string/join (map first (clojure.string/split (str x) #" "))))
-(acronimo "objeto volador no identificado")
-
-;; check if a number is narcissistic
-(defn narcissistic? [x]
-(= (int (reduce + (map #(Math/pow % (count (str x))) (digs x)))) x))
-
-;; get a sublist from a list
-(defn sublist [lista x y]
-(let [i (- x 1)]
-(keep-indexed #(when (and (>= %1 i) (< %1 (+ i y) )) %2) lista)))
-(sublist '(A B C D E F G) 3 2)
-
-;; create a function distribution
-(defn distl [x lista] (map #(conj (list %) x) lista))
-(distl 'a '(b c d))
-
-;; combine two lists into one
-(defn intercalar [x y]
-(flatten (map #(conj (list (val %)) (first %)) (zipmap x y))))
-
-;; create a vector of n vectors
-(defn vectores [n]
-(into [] (map #(into [] (range 1 %)) (range 2 (+ n 2)))))
-
-;; return the triangle type based on the lengths of their sides
-(defn tipo-triangulo [a b c]
-(cond
-    (and (= a b) (= b c)) "equilatero"
-    (or (= a b) (= b c) (= a c)) "isosceles"
-    true "escaleno"
-))
-
-;; return the nth prime number
+;; 16. Return the nth prime number
 (defn primo [n div]
 (cond
     (< n 2) "false"
@@ -278,7 +136,80 @@ x
 
 (defn n-primo [n] (obtener-primos n 2 1))
 
-;; return a vector with the first 100 prime numbers
+;; 17. Check if a word has duplicate letters
+(defn letra-repetida [x]
+  (> (count (filter #(-> % val (> 1)) (frequencies x))) 0))
+
+;; 19. Return the triangle type based on the lengths of their sides
+(defn tipo-triangulo [a b c]
+(cond
+    (and (= a b) (= b c)) "equilatero"
+    (or (= a b) (= b c) (= a c)) "isosceles"
+    true "escaleno"
+))
+
+;; 20. Slice a string
+(defn rango [palabra i]
+    (let [len (+ (count palabra) 1)]
+    (zipmap (range 0 (- len i)) (range i len))))
+
+(defn slice [palabra i]
+    (map #(subs palabra (first %) (val %)) (rango palabra i)))
+(slice "abcdef" 3)
+
+;; 21. Return only the anagrams of a word in a list
+(defn anagramas [p a] (filter #(= (sort p) (sort %)) a))
+
+;; 22. Return the acronym of a word
+(defn acronimo [x]
+(clojure.string/join (map first (clojure.string/split (str x) #" "))))
+(acronimo "objeto volador no identificado")
+
+;; 23. Check if a sentence is a panagram
+(defn pangrama? [x]
+(= (conj (into [] (range 97 123)) 241)
+(->> x sin-repetidos (map clojure.string/lower-case) clojure.string/join
+  seq (map int) sort (filter #(or (and (>= % 97) (<= % 122)) (= % 241))))
+))
+
+;; 24. Check if a number is narcissistic
+(defn narcissistic? [x]
+(= (int (reduce + (map #(Math/pow % (count (str x))) (digs x)))) x))
+
+;; 26. Get a sublist from a list
+(defn sublist [lista x y]
+(let [i (- x 1)]
+(keep-indexed #(when (and (>= %1 i) (< %1 (+ i y) )) %2) lista)))
+(sublist '(A B C D E F G) 3 2)
+
+;; 27. Return the index of a sublist
+(defn pos-inicial [x y]
+(let [i (clojure.string/index-of (clojure.string/join x) y)]
+(if i i 0)
+))
+
+;; 28. Create a function distribution
+(defn distl [x lista] (map #(conj (list %) x) lista))
+(distl 'a '(b c d))
+
+;; 31. Combine two lists into one
+(defn intercalar [x y]
+(flatten (map #(conj (list (val %)) (first %)) (zipmap x y))))
+
+;; 32. Get maximum depth of a list
+(defn profundidad (lista)
+(if (list? lista)
+(if (> (+ 1 (profundidad (first lista))) (profundidad (next lista)))
+    (+ 1 (profundidad (first lista)))
+    (profundidad (next lista)))
+    0)
+)
+
+(defn profundidad ([lista]
+  (last (sort (map #(if (list? %) (inc (profundidad %)) 1) lista)))))
+(profundidad '((2 3)(3 ((7))) 5))
+
+;; 33. Return a vector with the first 100 prime numbers
 (defn obtener-primeros-primos [x y]
 (let [p (es-primo x)]
 (if (and (= p "true") (= y 100))
@@ -291,23 +222,11 @@ x
 
 (defn cienPrimos [] (obtener-primeros-primos 2 1))
 
-;; return only the anagrams of a word in a list
-(defn anagramas [p a] (filter #(= (sort p) (sort %)) a))
+;; 34. Create a vector of n vectors
+(defn vectores [n]
+(into [] (map #(into [] (range 1 %)) (range 2 (+ n 2)))))
 
-;; check if a sentence is a panagram
-(defn pangrama? [x]
-(= (conj (into [] (range 97 123)) 241)
-(->> x sin-repetidos (map clojure.string/lower-case) clojure.string/join
-  seq (map int) sort (filter #(or (and (>= % 97) (<= % 122)) (= % 241))))
-))
-
-;; return the index of a sublist
-(defn pos-inicial [x y]
-(let [i (clojure.string/index-of (clojure.string/join x) y)]
-(if i i 0)
-))
-
-;; return the undefeated teams in a tournament
+;; 35. Return the undefeated teams in a tournament
 (defn get-undefeated [x]
 (set (filter #(not (some (fn [u] (= u %)) (map second x)))
     (map first x))))
@@ -315,7 +234,7 @@ x
 (defn undefeated []
 (get-undefeated (map vector '(1 2 1 4 3 5) '(2 1 3 1 2 2))))
 
-;; return the teams that lost every match
+;; 36. Return the teams that lost every match
 (defn losers-only [x]
 (set (filter #(not (some (fn [u] (= u %)) (map first x))) 
     (map second x))))
@@ -323,7 +242,7 @@ x
 (defn losers []
 (losers-only (map vector '(5 2 5 4 2 5) '(2 1 3 1 2 2))))
 
-;; check if a sentence is a palindrome
+;; 38. Check if a sentence is a palindrome
 (defn palindromo? [x]
 (let [y (filter #(or (and (>= % 97) (<= % 122)) (= % 241)) (map int (seq
   (clojure.string/join (replace '{"á" "a", "é" "e", "í" "i", "ó" "ó", "ú" "u"} 

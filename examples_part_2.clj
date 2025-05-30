@@ -322,3 +322,10 @@ x
 
 (defn losers []
 (losers-only (map vector '(5 2 5 4 2 5) '(2 1 3 1 2 2))))
+
+;; check if a sentence is a palindrome
+(defn palindromo? [x]
+(let [y (filter #(or (and (>= % 97) (<= % 122)) (= % 241)) (map int (seq
+  (clojure.string/join (replace '{"á" "a", "é" "e", "í" "i", "ó" "ó", "ú" "u"} 
+  (map clojure.string/lower-case x))))))]
+(= y (reverse y))))

@@ -308,9 +308,17 @@ x
 ))
 
 ;; return the undefeated teams in a tournament
-(defn obtener-invictos [x]
-(filter #(not (some (fn [u] (= u %)) (vals (into (sorted-map) x)))) 
-    (keys (into (sorted-map) x))))
+(defn get-undefeated [x]
+(set (filter #(not (some (fn [u] (= u %)) (map second x)))
+    (map first x))))
 
-(defn invictos []
-(obtener-invictos (map vector '(1 2 1 4 3 5) '(2 1 3 1 2 2))))
+(defn undefeated []
+(get-undefeated (map vector '(1 2 1 4 3 5) '(2 1 3 1 2 2))))
+
+;; return the teams that lost every match
+(defn losers-only [x]
+(set (filter #(not (some (fn [u] (= u %)) (map first x))) 
+    (map second x))))
+
+(defn losers []
+(losers-only (map vector '(5 2 5 4 2 5) '(2 1 3 1 2 2))))

@@ -94,14 +94,22 @@ x
 (isbn-10? "359821507X")
 
 ;; 11. Return the upper triangle matrix
-(defn mtSup [x] (reverse (calc (reverse x) (count x))))
-
 (defn calc [x i]
   (if (= (count x) 1)
     (list (first x))
     (conj (calc (rest x) (dec i)) (concat (repeat (- i 1) 0) 
         (keep-indexed #(when (>= (+ %1 1) i) %2) (first x))
 ))))
+
+(defn mtSup [x] (reverse (calc (reverse x) (count x))))
+
+;; 12. Return the main diagonal of a matrix
+(defn calc [x i]
+(if (>= i 0)
+(conj (calc (rest x) (dec i)) (nth (first x) i))
+))
+
+(defn diagSup [x] (reverse (calc (reverse x) (- (count x) 1))))
 
 ;; 14. Count each adn char in a string
 (defn contar [x y]

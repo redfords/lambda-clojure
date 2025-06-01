@@ -111,6 +111,15 @@ x
 
 (defn diagSup [x] (reverse (calc (reverse x) (- (count x) 1))))
 
+;; 13. Return the transpose of a matrix
+
+(defn calc [x i len]
+  (if (<= i len)
+  (conj (calc x (inc i) len) (map #(nth % i) x))
+))
+
+(defn mTrasp [x] (calc x 0 (- (count x) 1)))
+
 ;; 14. Count each adn char in a string
 (defn contar [x y]
 (if (= (count x) 0)

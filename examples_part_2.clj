@@ -35,12 +35,12 @@
 
 ;; 5. Remove element from nested list
 (defn lista [x]
-(if (not (empty? x))
-    (if (list? (first x))
-        (conj (lista (first x)) (lista (rest x)))
-        (conj (lista (rest x)) (first x))
-    )
-(list)
+  (if (not (empty? x))
+      (if (list? (first x))
+          (conj (lista (first x)) (lista (rest x)))
+          (conj (lista (rest x)) (first x))
+      )
+  (list)
 ))
 (lista '(1 2 (3 4) 5 6))
 
@@ -105,8 +105,8 @@ x
 
 ;; 12. Return the main diagonal of a matrix
 (defn calc [x i]
-(if (>= i 0)
-(conj (calc (rest x) (dec i)) (nth (first x) i))
+  (if (>= i 0)
+  (conj (calc (rest x) (dec i)) (nth (first x) i))
 ))
 
 (defn diagSup [x] (reverse (calc (reverse x) (- (count x) 1))))
@@ -122,12 +122,12 @@ x
 
 ;; 14. Count each adn char in a string
 (defn contar [x y]
-(if (= (count x) 0)
-0
-    (if (= (first x) y)
-    (+ (contar (rest x) y) 1)
-    (contar (rest x) y)
-    )
+  (if (= (count x) 0)
+  0
+      (if (= (first x) y)
+      (+ (contar (rest x) y) 1)
+      (contar (rest x) y)
+      )
 ))
 
 (defn contar [x y] (count (filter #(= % y) (seq x))))

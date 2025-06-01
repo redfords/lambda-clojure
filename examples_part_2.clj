@@ -325,3 +325,13 @@ x
 (= y (reverse y))
 ))
 
+;; 40. Convert integer to Roman
+(require '[clojure.math :as math])
+(defn romano [x]
+(let [
+    mil (math/floor-div x 1000),
+    cien (math/floor-div (mod x 1000) 100),
+    dece (math/floor-div (mod x 100) 10),
+    uni (mod x 10)
+    ]
+))

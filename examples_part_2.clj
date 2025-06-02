@@ -47,9 +47,8 @@
 ))
 (lista '(1 2 (3 4) 5 6))
 
-(defn eliminar [lista n]
-  (filter #(not= % n)
-  (map #(if (list? %) (eliminar % n) %) lista)))
+(defn borrar [x y]
+(filter #(not= % y) (map #(if (list? %) (borrar % y) %) x)))
 
 ;; 6. Get the last item in a nested list
 (defn getLast[lista] (->> lista flatten (filter symbol?) last))

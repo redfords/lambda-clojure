@@ -349,3 +349,12 @@ x
 (defn reverseWord [x]
 (clojure.string/join " " (map clojure.string/join
     (map reverse (map seq (.split (str x) " "))))))
+
+;; Convert from binary to decimal
+(require '[clojure.math :as math])
+(defn binToDec [x] (int (reduce + (convert x 0))))
+
+(defn convert [x i]
+(if (> x 0)
+  (conj (convert (math/floor-div x 10) (inc i)) 
+      (* (mod x 10) (Math/pow 2 i)))))

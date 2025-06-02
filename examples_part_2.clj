@@ -8,6 +8,9 @@
 (defn digs [x]
 (map Integer/parseInt (seq (clojure.string/split (str x) #""))))
 
+(defn digs [x]
+(map Integer/parseInt (.split (str x) "")))
+
 ;; 2. Split a list with a formatted string
 (defn repartir
   ([] (repartir "vos"))

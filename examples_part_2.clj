@@ -75,6 +75,13 @@ x
     )
 ))
 
+(defn sin-repetidos [x]
+(if (not-empty x)
+    (if (contains? (set (rest x)) (first x))
+    (conj (sin-repetidos (rest x)))
+    (conj (sin-repetidos (rest x)) (first x))
+)))
+
 ;; 9. Order a list os lists by length
 (defn ordenar [lista] (sort-by count lista))
 (reverse (ordenar lista))

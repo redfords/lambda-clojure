@@ -344,3 +344,8 @@ x
     uni (mod x 10)
     ]
 ))
+
+;; Reverse words in a sentence
+(defn reverseWord [x]
+(clojure.string/join " " (map clojure.string/join
+    (map reverse (map seq (.split (str x) " "))))))
